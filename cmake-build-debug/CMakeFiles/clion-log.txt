@@ -1,0 +1,6 @@
+/home/ranhao/Documents/clion-2021.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ranhao/Documents/Left_Atrial_Appendage_Occlusion/untitled
+-- Found OpenCV: /usr (found version "4.2.0") 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found version "3.8.10") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ranhao/Documents/Left_Atrial_Appendage_Occlusion/untitled/cmake-build-debug

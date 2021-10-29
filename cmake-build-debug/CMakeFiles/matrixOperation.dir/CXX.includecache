@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ranhao/Documents/iLQR_template/matrixOperation.cpp
+matrixOperation.h
+/home/ranhao/Documents/iLQR_template/matrixOperation.h
+
+/home/ranhao/Documents/iLQR_template/matrixOperation.h
+vector
+-
+cstdio
+-
+iostream
+-
+cstdlib
+-
+cstdint
+-
+cmath
+-
+
