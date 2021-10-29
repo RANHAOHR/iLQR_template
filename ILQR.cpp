@@ -114,20 +114,11 @@ void ILQR::value_iteration(std::vector< std::vector<double> > &x_t_stack, std::v
             std::vector<double> *variable_x;   variable_x = &x_t_temp;
             std::vector<std::vector<double>> fx = jacobian_forward_difference(&ILQR::dynamic_function, x_t_temp, u_t_temp, variable_x);
 
-//            std::cout << "fx: " << std::endl;
-//            for (int j = 0; j < fx.size(); ++j) {
-//                std::cout << fx[j][0] << " " << fx[j][1] << " " << fx[j][2] <<  std::endl;
-//            }
 
             x_t_temp = x_t_stack[ipath];
             u_t_temp = u_t_stack[ipath];
             std::vector<double> *variable_u;   variable_u = &u_t_temp;
             std::vector< std::vector<double> > fu = jacobian_forward_difference(&ILQR::dynamic_function, x_t_temp, u_t_temp, variable_u);
-
-//            std::cout << "fu: " << std::endl;
-//            for (int j = 0; j < fu.size(); ++j) {
-//                std::cout << fu[j][0] << " " << fu[j][1]  <<  std::endl;
-//            }
 
             //Differentiate cost functions
             x_t_temp = x_t_stack[ipath];
@@ -221,10 +212,6 @@ void ILQR::value_iteration(std::vector< std::vector<double> > &x_t_stack, std::v
                         Vxx[i][j] = 0.5*Vxx_temp[i][j];
                     }
                 }
-//                std::cout << "Vxx: "<< std::endl;
-//                for (int i = 0; i < Vxx.size(); ++i) {
-//                    std::cout << Vxx[i][0] << " " << Vxx[i][1] << " " << Vxx[i][2]  << std::endl;
-//                }
             }else{
                 std::cout << "Singular Quu, Quiting..." << std::endl;
                 return;
@@ -267,13 +254,6 @@ void ILQR::value_iteration(std::vector< std::vector<double> > &x_t_stack, std::v
     plt::figure(2);
     std::string res_title = "Final plot";
     plot_convergence(x_t_stack);
-
-//    std::vector<double>  x_t_temp = x_t_stack[0];
-//    std::cout << "Heissian: " << std::endl;
-//    std::vector< std::vector<double> > Heissian_ = heissian_cost_func(&ILQR::quadratic_cost, x_t_temp, Q_T);
-//    for (int i = 0; i < Heissian_.size(); ++i) {
-//        std::cout << Heissian_[i][0] << " " << Heissian_[i][1] << " " << Heissian_[i][2] << std::endl;
-//    }
 }
 
 std::vector<double> ILQR::dynamic_function(std::vector<double>  &x_t, std::vector<double>  &u_t){
