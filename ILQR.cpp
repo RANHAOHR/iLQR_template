@@ -22,7 +22,7 @@ ILQR::ILQR() {
         Q[i].resize(D_state);
     }
 
-    Q_T[0][0] = 15000; Q_T[1][1] = 10000; Q_T[2][2] = 500000;
+    Q_T[0][0] = 5000; Q_T[1][1] = 10000; Q_T[2][2] = 500000;
     Q[0][0] = 1; Q[1][1]  = 1; Q[2][2]  = 7;
 
     R.resize(D_control);
@@ -424,7 +424,7 @@ std::vector<double>  ILQR::quadratic_cost(std::vector<double>  &input_t, std::ve
     return cost_;
 };
 
-std::vector< std::vector<double> >  ILQR::jacobian_forward_difference(obj_func_ func, auto &param_1, auto &param_2, auto  *variable_ ){
+std::vector< std::vector<double> >  ILQR::jacobian_forward_difference(dynam_func_ func, auto &param_1, auto &param_2, auto  *variable_ ){
     std::vector< std::vector<double> > Df_;
     std::vector<double> f_0 = (this->*func)(param_1, param_2);
     double h = 1e-08;
@@ -448,7 +448,7 @@ std::vector< std::vector<double> >  ILQR::jacobian_forward_difference(obj_func_ 
     return Df_;
 }
 
-std::vector< std::vector<double> > ILQR::jacobian_forward_difference(obj_func_v func, auto &param_1, auto &param_2, auto  *variable_){
+std::vector< std::vector<double> > ILQR::jacobian_forward_difference(cost_func_ func, auto &param_1, auto &param_2, auto  *variable_){
     std::vector< std::vector<double> > Df_;
     std::vector<double> f_0 = (this->*func)(param_1, param_2);
     double h = 1e-8;
@@ -471,34 +471,12 @@ std::vector< std::vector<double> > ILQR::jacobian_forward_difference(obj_func_v 
     return Df_;
 }
 
-std::vector< std::vector<double> > ILQR::jacobian_forward_difference(obj_func_v func, auto &param_1, auto &param_2, auto &param_3, auto &param_4,  auto *variable_){
-    std::vector< std::vector<double> > Df_;
-    std::vector<double> f_0 = (this->*func)(param_1, param_2, param_3, param_4);
-    double h = 1e-8;
-    int f_size = f_0.size();
-
-    std::vector<double> x_0 = *variable_;
-    int var_size = (*variable_).size();
-    Df_.resize(f_size);
-    for (int i = 0; i < f_size; ++i) {
-        Df_[i].resize(var_size);
-    }
-    for (int j = 0; j < var_size; ++j) {
-        std::vector<double> x_h = x_0;  x_h[j] = x_0[j] + h;
-        *variable_ = x_h;
-        std::vector<double> f_h = (this->*func)(param_1, param_2, param_3, param_4);
-        for (int k = 0; k < f_size; ++k) {
-            Df_[k][j] = (f_h[k] - f_0[k]) / h;
-        }
-    }
-    return Df_;
-}
 
 /*
  * Computing Heissian of the cost function numerically
  */
-std::vector< std::vector<double> > ILQR::heissian_cost_func(obj_func_v func, auto &param_1, auto &param_2){
-    double h = 2^-8;
+std::vector< std::vector<double> > ILQR::heissian_cost_func(cost_func_ func, auto &param_1, auto &param_2){
+    double h = pow(2, -8);
     std::vector<double> x_0 = param_1;
 
     int var_size = param_1.size();

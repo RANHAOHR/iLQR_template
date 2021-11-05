@@ -98,13 +98,12 @@ public:
     std::vector<double> car_dynamic(std::vector<double>  &x_t, std::vector<double>  &u_t);
     std::vector<double> linear_dynamic_function(std::vector<double>  &x_t, std::vector<double>  &u_t);
 
-    using obj_func_ = std::vector<double> (ILQR::*)(std::vector<double>&, std::vector<double>&);
-    using obj_func_v = std::vector<double> (ILQR::*)(std::vector<double>&, std::vector< std::vector<double> >&);
+    using dynam_func_ = std::vector<double> (ILQR::*)(std::vector<double>&, std::vector<double>&);
+    using cost_func_ = std::vector<double> (ILQR::*)(std::vector<double>&, std::vector< std::vector<double> >&);
 
-    std::vector< std::vector<double> > jacobian_forward_difference(obj_func_ func, auto &param_1, auto &param_2, auto  *variable_);
-    std::vector< std::vector<double> > jacobian_forward_difference(obj_func_v func, auto &param_1, auto &param_2, auto  *variable_);
-    std::vector< std::vector<double> > jacobian_forward_difference(obj_func_v func, auto &param_1, auto &param_2, auto &param_3, auto &param_4,  auto *variable_);
-    std::vector< std::vector<double> > heissian_cost_func(obj_func_v func, auto &param_1, auto &param_2);
+    std::vector< std::vector<double> > jacobian_forward_difference(dynam_func_ func, auto &param_1, auto &param_2, auto  *variable_);
+    std::vector< std::vector<double> > jacobian_forward_difference(cost_func_ func, auto &param_1, auto &param_2, auto  *variable_);
+    std::vector< std::vector<double> > heissian_cost_func(cost_func_ func, auto &param_1, auto &param_2);
 
     void plot_convergence(std::vector<std::vector<double> > &x_stack, std::string& title);
     void plot_convergence(std::vector<std::vector<double> > &x_stack);
