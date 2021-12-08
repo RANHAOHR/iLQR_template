@@ -1,0 +1,5 @@
+/usr/local/bin/iLQR
+/usr/local/lib/cmake/iLQR/iLQRTargets.cmake
+/usr/local/lib/cmake/iLQR/iLQRTargets-noconfig.cmake
+/usr/local/include/iLQR/iLQR.h
+/usr/local/lib/cmake/iLQR/iLQRConfig.cmake

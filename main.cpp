@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ILQR.cpp"
+#include "iLQR.cpp"
 
 int main() {
     ILQR iLQR_controller;

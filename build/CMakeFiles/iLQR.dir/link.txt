@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/iLQR.dir/main.cpp.o -o iLQR  libmatrixOperation.a /usr/lib/x86_64-linux-gnu/libpython3.8.so 
