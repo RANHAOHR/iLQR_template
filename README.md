@@ -15,7 +15,7 @@ The most basic iLQR template using a car dynamic without constraint & collision 
 	cmake ..
 	sudo make install
 ```
-**Compile & Run iLQR (In build directory)
+**Compile & Run iLQR (In build directory):** 
 ```	
 	cmake --build .
 	./iLQR
